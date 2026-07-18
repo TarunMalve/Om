@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dynamic layout tokens */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* Border radius custom definitions */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-pill: 9999px;
+
+  /* Base Color Palette (Light Mode Default) */
+  --color-primary-base: var(--primary-base);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  
+  --color-secondary-base: var(--secondary-base);
+  --color-secondary-light: var(--secondary-light);
+  --color-secondary-dark: var(--secondary-dark);
+
+  --color-accent-base: var(--accent-base);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+
+  --color-neutral-white: var(--neutral-white);
+  --color-neutral-gray-100: var(--neutral-gray-100);
+  --color-neutral-gray-300: var(--neutral-gray-300);
+  --color-neutral-gray-500: var(--neutral-gray-500);
+  --color-neutral-gray-700: var(--neutral-gray-700);
+  --color-neutral-black: var(--neutral-black);
+
+  /* Shadows & Elevation */
+  --shadow-elevation-1: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-elevation-2: 0 4px 6px rgba(0,0,0,0.15);
+
+  /* Easing curves */
+  --animate-ease-out-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Light Mode Core Variables */
+:root {
+  --primary-base: hsl(210, 65%, 45%);
+  --primary-light: hsl(210, 65%, 60%);
+  --primary-dark: hsl(210, 65%, 30%);
+
+  --secondary-base: hsl(30, 80%, 45%); /* Saffron Accent */
+  --secondary-light: hsl(30, 80%, 60%);
+  --secondary-dark: hsl(30, 80%, 30%);
+
+  --accent-base: hsl(120, 50%, 40%);
+  --accent-light: hsl(120, 50%, 55%);
+  --accent-dark: hsl(120, 50%, 25%);
+
+  --neutral-white: hsl(0, 0%, 100%);
+  --neutral-gray-100: hsl(0, 0%, 96%);
+  --neutral-gray-300: hsl(0, 0%, 88%);
+  --neutral-gray-500: hsl(0, 0%, 58%);
+  --neutral-gray-700: hsl(0, 0%, 32%);
+  --neutral-black: hsl(0, 0%, 8%);
+
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 8%);
+}
+
+/* Dark Mode Variables Override */
+.dark {
+  --primary-base: hsl(210, 65%, 60%);
+  --primary-light: hsl(210, 65%, 75%);
+  --primary-dark: hsl(210, 65%, 45%);
+
+  --secondary-base: hsl(30, 80%, 55%);
+  --secondary-light: hsl(30, 80%, 70%);
+  --secondary-dark: hsl(30, 80%, 40%);
+
+  --accent-base: hsl(120, 50%, 50%);
+  --accent-light: hsl(120, 50%, 65%);
+  --accent-dark: hsl(120, 50%, 35%);
+
+  --neutral-white: hsl(0, 0%, 10%);
+  --neutral-gray-100: hsl(0, 0%, 18%);
+  --neutral-gray-300: hsl(0, 0%, 28%);
+  --neutral-gray-500: hsl(0, 0%, 50%);
+  --neutral-gray-700: hsl(0, 0%, 82%);
+  --neutral-black: hsl(0, 0%, 98%);
+
+  --background: hsl(0, 0%, 8%);
+  --foreground: hsl(0, 0%, 98%);
+}
+
+/* Cultural Theme Overrides (e.g., Mahashivratri / Navratri Theme overrides) */
+[data-festival="mahashivratri"] {
+  --secondary-base: hsl(270, 70%, 45%); /* Sacred Purple Accent */
+  --secondary-light: hsl(270, 70%, 60%);
+  --secondary-dark: hsl(270, 70%, 30%);
+}
+
+[data-festival="diwali"] {
+  --secondary-base: hsl(35, 90%, 50%); /* Bright Gold / Marigold Accent */
+  --secondary-light: hsl(35, 90%, 65%);
+  --secondary-dark: hsl(35, 90%, 35%);
+}
+
+/* Global Reset & Base Typography */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Accessible focus outline styled using Accent Token */
+*:focus-visible {
+  outline: 4px solid var(--secondary-base);
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbars matching P06B design */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-gray-300);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-gray-500);
+}
+
+/* Glassmorphism card utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-panel {
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Skip-to-content helper classes */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--secondary-base);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
